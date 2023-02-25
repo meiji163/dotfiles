@@ -1,3 +1,5 @@
+" Modified from @vilmibm's conf
+
 " This file assumes installation of:
 " - FZF -- specifically, a clone of junegunn/fzf at ~/src/fzf as well as the fzf binary
 " - ag -- silversearch-ag package on debian
@@ -20,21 +22,23 @@ set rtp+=~/src/fzf
 Plug '~/src/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
-" Plug 'arcticicestudio/nord-vim'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
-"Plug 'kchmck/vim-coffee-script'
-"Plug 'leafgarland/typescript-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'arcticicestudio/nord-vim'
-"Plug '~/src/vim-hy'
 
 call plug#end()
 
 " Settings
 
+set cursorline
+set cursorcolumn
 syntax on
 filetype plugin indent on
+
+let g:go_highlight_types=1
+let g:go_highlight_fields=1
+let g:go_highlight_functions=1
+let g:go_highlight_function_calls=1
 
 " use soft wrapping
 " https://vim.fandom.com/wiki/Word_wrap_without_line_breaks
@@ -55,14 +59,14 @@ set expandtab
 set wildmode=longest,list
 set number
 set incsearch
-"set list listchars=tab:>-,trail:.,extends:>
-set t_Co=256
-colorscheme wombat256
-highlight Normal guibg=black guifg=white
-set background=dark
+" set list listchars=tab:>-,trail:.,extends:>
+"
 
- set cursorline
- set cursorcolumn
+" COLORS
+set t_Co=256
+set background=dark
+colorscheme papercolor
+highlight Normal guibg=black guifg=white
 
 " STATUSLINE
 
