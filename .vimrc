@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plug')
 set rtp+=~/src/fzf
 Plug '~/src/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'flazz/vim-colorschemes'
 " Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
@@ -65,7 +66,7 @@ set incsearch
 " COLORS
 set t_Co=256
 set background=dark
-colorscheme papercolor
+colorscheme PaperColor
 highlight Normal guibg=black guifg=white
 
 " STATUSLINE
