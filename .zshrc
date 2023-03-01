@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$HOME/.config/emacs/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -60,6 +60,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Install: 
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting.git
 plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -90,16 +94,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias em="emacsclient -t -a ''"
-alias emg="emacsclient -c -n -a ''"
-alias vpn="osascript ~/Documents/github/vpn/contrib/connect-github-iad-prod.applescript"
+# enable cd on ^G for nnn
+nnn() {
+  declare -x +g NNN_TMPFILE=$(mktemp --tmpdir $0.XXXX)
+  trap "rm -f $NNN_TMPFILE" EXIT
+  =nnn $@
+  [ -s $NNN_TMPFILE ] && source $NNN_TMPFILE
+}
+
+alias em="emacsclient -t -a 'emacs'"
+alias emg="emacsclient -c -n -a 'emacs'"
+
+# ========== MAC OS ========
 #
-export HOMEBREW_PREFIX="/Users/meiji163/homebrew";
-export HOMEBREW_CELLAR="/Users/meiji163/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/Users/meiji163/homebrew";
-export PATH="/Users/meiji163/homebrew/bin:/Users/meiji163/homebrew/sbin${PATH+:$PATH}";
-export MANPATH="/Users/meiji163/homebrew/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="/Users/meiji163/homebrew/share/info:${INFOPATH:-}";
+#export HOMEBREW_PREFIX="/Users/meiji163/homebrew";
+#export HOMEBREW_CELLAR="/Users/meiji163/homebrew/Cellar";
+#export HOMEBREW_REPOSITORY="/Users/meiji163/homebrew";
+#export PATH="/Users/meiji163/homebrew/bin:/Users/meiji163/homebrew/sbin${PATH+:$PATH}";
+#export MANPATH="/Users/meiji163/homebrew/share/man${MANPATH+:$MANPATH}:";
+#export INFOPATH="/Users/meiji163/homebrew/share/info:${INFOPATH:-}";
+# ==========================
 
 
 # shell history
@@ -111,8 +125,9 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 
-# pure
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+# pure shell
+# Install: git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+fpath+=("$HOME/.zsh/pure")
 
 autoload -U promptinit; promptinit
 prompt pure
@@ -122,17 +137,15 @@ bindkey ^R history-incremental-search-backward
 bindkey ^S history-incremental-search-forward
 
 #cli ghd
-export PATH="$HOME/Documents/cli/bin/ghd:$PATH"
+#export PATH="$HOME/Documents/cli/bin/ghd:$PATH"
 
 #go
-export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-export PATH=$PATH:/Applications/Racket\ v8.5/bin
-HISTTIMEFORMAT="%d/%m/%y %T "
+#export GOPATH=$HOME/go
+#export GOROOT="$(brew --prefix golang)/libexec"
+#export GOBIN=$GOPATH/bin
+#export PATH=$PATH:$GOPATH/bin
+#export PATH=$PATH:$GOROOT/bin
+#export HISTTIMEFORMAT="%d/%m/%y %T "
 
 export FZF_DEFAULT_OPTS="
 --bind 'alt-c:clear-query'
@@ -154,7 +167,5 @@ export FZF_DEFAULT_OPTS="
 #fi
 #unset __conda_setup
 # <<< conda initialize <<<
-
-export PATH="/Users/meiji163/homebrew/opt/llvm/bin:$PATH"
 
 [ -f "/Users/meiji163/.ghcup/env" ] && source "/Users/meiji163/.ghcup/env" # ghcup-env
