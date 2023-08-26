@@ -2,6 +2,9 @@ window:
   padding:
     x: 5
     y: 5
+  dimensions:
+    columns: 128
+    lines: 40
 scrolling:
   history: 100000
   multiplier: 3
@@ -52,7 +55,7 @@ schemes:
       red:     '#da8548'
       green:   '#4db5bd'
       yellow:  '#ecbe7b'
-      blue:    '#3071db'
+      blue:    '#2257a0' #3071db
       magenta: '#a9a1e1'
       cyan:    '#46d9ff'
       white:   '#dfdfdf'
